@@ -1,0 +1,12 @@
+D:\Program Files\dev-project\sgw\DollSay\backend\src\main\java\com\dollsay\backend\service\ChatService.java
+D:\Program Files\dev-project\sgw\DollSay\backend\src\main\java\com\dollsay\backend\model\GuestSession.java
+D:\Program Files\dev-project\sgw\DollSay\backend\src\main\java\com\dollsay\backend\dto\ChatResponse.java
+D:\Program Files\dev-project\sgw\DollSay\backend\src\main\java\com\dollsay\backend\service\EmotionAnalyzer.java
+D:\Program Files\dev-project\sgw\DollSay\backend\src\main\java\com\dollsay\backend\controller\ChatController.java
+D:\Program Files\dev-project\sgw\DollSay\backend\src\main\java\com\dollsay\backend\repository\GuestSessionRepository.java
+D:\Program Files\dev-project\sgw\DollSay\backend\src\main\java\com\dollsay\backend\BackendApplication.java
+D:\Program Files\dev-project\sgw\DollSay\backend\src\main\java\com\dollsay\backend\config\CorsConfig.java
+D:\Program Files\dev-project\sgw\DollSay\backend\src\main\java\com\dollsay\backend\exception\GlobalExceptionHandler.java
+D:\Program Files\dev-project\sgw\DollSay\backend\src\main\java\com\dollsay\backend\dto\ChatRequest.java
+D:\Program Files\dev-project\sgw\DollSay\backend\src\main\java\com\dollsay\backend\service\DeepSeekService.java
+D:\Program Files\dev-project\sgw\DollSay\backend\src\main\java\com\dollsay\backend\controller\HealthController.java

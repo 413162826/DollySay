@@ -1,0 +1,332 @@
+/* src/App.css - 梦幻粉紫系重构版 */
+
+/* 全局重置 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "PingFang SC", "Microsoft YaHei", "Nunito", sans-serif;
+  background-color: #fcebf4;
+  /* 兜底色 */
+  overflow: hidden;
+  /* 防止滚动条 */
+}
+
+/* 主容器：全屏渐变背景 */
+.app {
+  width: 100vw;
+  height: 100vh;
+  /* 梦幻粉紫渐变 */
+  background: linear-gradient(135deg, #fcebf4 0%, #ecdcf7 50%, #dff2fc 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* 装饰背景球 (模拟3D氛围) */
+.app::before {
+  content: '';
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 70%);
+  top: -100px;
+  left: -100px;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.app::after {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(216, 180, 254, 0.2) 0%, rgba(216, 180, 254, 0) 70%);
+  bottom: 50px;
+  right: 50px;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* 主布局 */
+.app-main {
+  width: 100%;
+  max-width: 1200px;
+  /* 限制最大宽度，保持精致感 */
+  height: 90vh;
+  /* 留出一点边距 */
+  display: flex;
+  flex-direction: column;
+  /* 移动端默认垂直 */
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+  position: relative;
+  z-index: 10;
+}
+
+/* 左侧玩偶区 */
+.doll-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.doll-title {
+  font-size: 2.5rem;
+  color: #5d4e6d;
+  margin-top: 20px;
+  font-weight: 800;
+  text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.5);
+}
+
+.doll-subtitle {
+  font-size: 1.2rem;
+  color: #8b7d9b;
+  margin-top: 10px;
+  background: rgba(255, 255, 255, 0.4);
+  padding: 8px 16px;
+  border-radius: 20px;
+}
+
+/* 右侧聊天区：毛玻璃卡片 */
+.chat-section {
+  flex: 1.2;
+  width: 100%;
+  height: 100%;
+  max-height: 800px;
+  background: rgba(255, 255, 255, 0.45);
+  /* 半透明白 */
+  backdrop-filter: blur(20px);
+  /* 核心：毛玻璃模糊 */
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 40px;
+  /* 大圆角 */
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow:
+    0 20px 50px rgba(100, 80, 120, 0.1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 20px;
+}
+
+/* 聊天框内部 */
+.chat-box {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.messages-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  /* 消息间距 */
+}
+
+/* 隐藏滚动条但保持功能 */
+.messages-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.messages-container::-webkit-scrollbar-thumb {
+  background: rgba(139, 125, 155, 0.2);
+  border-radius: 10px;
+}
+
+/* 输入框区域：悬浮胶囊 */
+.input-container {
+  display: flex;
+  gap: 12px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 30px;
+  margin-top: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.input-container input {
+  flex: 1;
+  padding: 12px 20px;
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  color: #5d4e6d;
+  outline: none;
+}
+
+.input-container input::placeholder {
+  color: #b0a4be;
+}
+
+.input-container button {
+  padding: 10px 24px;
+  background: #a980f5;
+  /* 按钮主色：香芋紫 */
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 10px rgba(169, 128, 245, 0.3);
+}
+
+.input-container button:hover:not(:disabled) {
+  background: #966BE8;
+  transform: scale(1.05);
+}
+
+.input-container button:disabled {
+  background: #dcd0f0;
+  box-shadow: none;
+}
+
+/* 消息气泡重构 */
+.message-bubble {
+  max-width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+
+.message-bubble.user {
+  align-self: flex-end;
+}
+
+.message-bubble.ai {
+  align-self: flex-start;
+}
+
+.bubble-content {
+  padding: 14px 20px;
+  border-radius: 24px;
+  font-size: 16px;
+  line-height: 1.6;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  backdrop-filter: blur(5px);
+}
+
+/* 用户气泡：果冻蓝 */
+.message-bubble.user .bubble-content {
+  background: linear-gradient(135deg, #8EC5FC 0%, #E0C3FC 100%);
+  color: white;
+  border-bottom-right-radius: 4px;
+  /* 小尾巴 */
+}
+
+/* AI气泡：通透白 */
+.message-bubble.ai .bubble-content {
+  background: rgba(255, 255, 255, 0.85);
+  color: #5d4e6d;
+  border-bottom-left-radius: 4px;
+  /* 小尾巴 */
+  border: 1px solid rgba(255, 255, 255, 0.9);
+}
+
+/* 玩偶样式微调 */
+.doll-container {
+  width: 280px;
+  height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  filter: drop-shadow(0 10px 20px rgba(169, 128, 245, 0.3));
+  /* 柔和投影 */
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.doll-emoji {
+  font-size: 200px;
+  /* 尝试给Emoji加一点3D光泽感 (模拟) */
+  filter: contrast(1.1) saturate(1.1);
+}
+
+/* Loading 动画优化 */
+.typing-indicator span {
+  background: #a980f5;
+  width: 6px;
+  height: 6px;
+}
+
+/* 响应式调整 */
+@media (min-width: 768px) {
+  .app-main {
+    flex-direction: row;
+    padding: 40px;
+  }
+
+  .doll-section {
+    padding-right: 40px;
+    align-items: flex-end;
+    /* 靠右对齐，靠近聊天框 */
+    text-align: right;
+  }
+
+  .chat-section {
+    height: 100%;
+  }
+
+  /* 桌面端大标题 */
+  .doll-title {
+    font-size: 3.5rem;
+  }
+
+  .doll-container {
+    width: 320px;
+    height: 320px;
+  }
+
+  .doll-emoji {
+    font-size: 240px;
+  }
+}
+
+@media (max-width: 767px) {
+  .app {
+    height: auto;
+    min-height: 100vh;
+    padding: 20px 0;
+  }
+
+  .app-main {
+    height: auto;
+    gap: 10px;
+  }
+
+  .doll-section {
+    flex: 0 0 auto;
+  }
+
+  .doll-container {
+    width: 120px;
+    height: 120px;
+  }
+
+  .doll-emoji {
+    font-size: 80px;
+  }
+
+  .chat-section {
+    height: 70vh;
+    min-height: 400px;
+  }
+}
