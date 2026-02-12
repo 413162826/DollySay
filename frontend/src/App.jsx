@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Doll from './components/Doll';
+import MoonMascot from './components/MoonMascot';
 import ChatBox from './components/ChatBox';
 import './App.css';
 
@@ -14,7 +14,7 @@ function App() {
     <div className="app">
       <main className="app-main">
         <div className="doll-section">
-          <Doll emotion={emotion} onClick={handleDollClick} />
+          <MoonMascot emotion={emotion} onClick={handleDollClick} />
           <h1 className="doll-title">小月 🌙</h1>
           <p className="doll-subtitle">你的24小时倾听者</p>
         </div>
