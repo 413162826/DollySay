@@ -8,5 +8,6 @@ com\dollsay\backend\controller\ChatController.class
 com\dollsay\backend\service\ChatService.class
 com\dollsay\backend\service\EmotionAnalyzer.class
 com\dollsay\backend\BackendApplication.class
+com\dollsay\backend\config\CorsConfig.class
 com\dollsay\backend\repository\GuestSessionRepository.class
 com\dollsay\backend\dto\ChatResponse.class
