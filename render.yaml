@@ -1,0 +1,30 @@
+version: "1"
+
+services:
+  - type: web
+    name: dollsay-backend
+    runtime: java
+    region: oregon
+    plan: free
+    rootDir: backend
+    buildCommand: mvn clean package -DskipTests
+    startCommand: java -Xmx512m -jar target/backend-1.0.0.jar
+    envVars:
+      - key: DEEPSEEK_API_KEY
+        sync: false
+      - key: SHOW_SQL
+        value: false
+      - key: DB_DRIVER
+        value: org.postgresql.Driver
+      - key: DB_DIALECT
+        value: org.hibernate.dialect.PostgreSQLDialect
+      - key: DATABASE_URL
+        fromDatabase:
+          name: dollsay-db
+          property: connectionString
+
+databases:
+  - name: dollsay-db
+    plan: free
+    databaseName: dollsay
+    user: dollsay
