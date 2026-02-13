@@ -72,13 +72,9 @@ export default function useMoonBehavior(onClickExternal) {
         if (onClickExternal) onClickExternal();
 
         if (type === 'click') {
-            if (part === 'head') triggerAction('SHY');
+            if (part === 'body') triggerAction('SHY');
+            else if (part === 'head') triggerAction('POKE');
             else if (part === 'mouth') triggerAction('SURPRISED');
-            // Body click no longer triggers POKE, just wakes up and maybe happy
-            else {
-                // 可以选择给个微弱反馈，或者什么都不做(只唤醒)
-                // triggerAction('NEUTRAL'); 
-            }
         }
         else if (type === 'dblclick') {
             if (part === 'head') triggerAction('DIZZY');
